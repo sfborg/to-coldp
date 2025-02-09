@@ -25,6 +25,7 @@ import (
 	"log/slog"
 	"os"
 
+	clcfg "github.com/gnames/coldp/config"
 	"github.com/gnames/coldp/io/bldio"
 	"github.com/sfborg/sflib/io/archio"
 	"github.com/sfborg/sflib/io/dbio"
@@ -64,33 +65,36 @@ SQL dump format.
 		sfgaPath := args[0]
 		coldpPath := args[1]
 
-		// path to SFGA archive
-		slog.Info("Exporting SFGA data to GN database", "path", sfgaPath)
+		slog.Info("Extracting SFGA data", "path", sfgaPath)
 
 		// initiate sfga file
-		_, err := archio.New(sfgaPath, cfg.CacheDir)
+		sfga, err := archio.New(sfgaPath, cfg.CacheDir)
 		if err != nil {
 			slog.Error("Cannot initialize SFGA archive", "error", err)
 			os.Exit(1)
 		}
 
+		err = sfga.Extract()
+		if err != nil {
+			slog.Error("Cannot extract SFGA archive", "error", err)
+			os.Exit(1)
+		}
+
 		// initiate sfga db instance
 		sfdb := dbio.New(cfg.CacheDbDir)
+		db, err := sfdb.Connect()
+		if err != nil {
+			slog.Error("Cannot connect to SFGA database", "error", err)
+			os.Exit(1)
+		}
 
 		// initiate CoLDP builder
-		cldp := bldio.New()
-		err = cldp.Init()
-		if err != nil {
-			slog.Error("Cannot initialize CoLDP builder", "error", err)
-			os.Exit(1)
-		}
+		coldpCfg := clcfg.New()
+		cldp := bldio.New(coldpCfg)
 
-		tcdp, err := tocoldp.New(cfg, sfdb, cldp)
-		if err != nil {
-			slog.Error("Cannot initialize ToCoLDP", "error", err)
-			os.Exit(1)
-		}
+		tcdp := tocoldp.New(cfg, db, cldp)
 
+		slog.Info("Exporting SFGA data to CoLDP")
 		err = tcdp.Export(coldpPath)
 		if err != nil {
 			slog.Error("Cannot export SFGA to CoLDP", "error", err)

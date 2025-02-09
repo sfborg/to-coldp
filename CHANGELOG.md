@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.0.0] - 2024-06-13 Thu
 
-Add [#2]: add working initiation.
+Add [#2]: initiate SFGA database connection, director for CoLDP files.
 Add [#1]: skeleton of the program.
 Add: initial commit
 

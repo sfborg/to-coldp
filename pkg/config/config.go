@@ -37,8 +37,8 @@ type Config struct {
 	// BatchSize sets the size of batch for insert statements.
 	BatchSize int
 
-	// WithTabDelim sets CSV delimeter as '\t' (tab) instead of ',' (comma).
-	WithTabDelim bool
+	// WithCommaDelim sets CSV delimeter as ',' (comma) instead of '\t' (tab).
+	WithCommaDelim bool
 
 	// WithNameUsage allows to create CoLDP where name, taxon, synonym
 	// files are combined into name-usage file.
@@ -61,7 +61,7 @@ func OptWithNameUsage(b bool) Option {
 
 func OptWithTabDelim(b bool) Option {
 	return func(c *Config) {
-		c.WithTabDelim = b
+		c.WithCommaDelim = b
 	}
 }
 
@@ -86,7 +86,11 @@ func New(opts ...Option) Config {
 
 	cacheDir = filepath.Join(cacheDir, "sfborg", "to", "coldp")
 
-	res := Config{}
+	res := Config{
+		CacheDir:  cacheDir,
+		BatchSize: 50_000,
+		JobsNum:   4,
+	}
 	for _, o := range opts {
 		o(&res)
 	}

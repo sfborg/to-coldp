@@ -4,7 +4,6 @@ import (
 	"database/sql"
 
 	"github.com/gnames/coldp/ent/coldp"
-	"github.com/sfborg/sflib/ent/sfga"
 	"github.com/sfborg/to-coldp/pkg/config"
 )
 
@@ -16,21 +15,15 @@ type tocoldp struct {
 
 func New(
 	cfg config.Config,
-	sfdb sfga.DB,
+	sfdb *sql.DB,
 	cldp coldp.Builder,
-) (ToCoLDP, error) {
+) ToCoLDP {
 	res := tocoldp{
 		cfg:  cfg,
 		cldp: cldp,
+		db:   sfdb,
 	}
-
-	db, err := sfdb.Connect()
-	if err != nil {
-		return nil, err
-	}
-
-	res.db = db
-	return &res, nil
+	return &res
 }
 
 func (t *tocoldp) Export(path string) error {
