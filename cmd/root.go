@@ -29,6 +29,7 @@ import (
 	"github.com/gnames/coldp/io/bldio"
 	"github.com/sfborg/sflib/io/archio"
 	"github.com/sfborg/sflib/io/dbio"
+	"github.com/sfborg/to-coldp/internal/io/cfio"
 	tocoldp "github.com/sfborg/to-coldp/pkg"
 	"github.com/sfborg/to-coldp/pkg/config"
 	"github.com/spf13/cobra"
@@ -92,7 +93,8 @@ SQL dump format.
 		coldpCfg := clcfg.New()
 		cldp := bldio.New(coldpCfg)
 
-		tcdp := tocoldp.New(cfg, db, cldp)
+		clf := cfio.New(db)
+		tcdp := tocoldp.New(cfg, clf, cldp)
 
 		slog.Info("Exporting SFGA data to CoLDP")
 		err = tcdp.Export(coldpPath)

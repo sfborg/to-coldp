@@ -1,11 +1,16 @@
-package coldpio
+package cfio
 
-import cfiles "github.com/sfborg/to-coldp/internal/ent"
+import (
+	"database/sql"
 
-type coldpio struct {
+	cfiles "github.com/sfborg/to-coldp/internal/ent"
+)
+
+type cfio struct {
+	db *sql.DB
 }
 
-func New() cfiles.ColDPFiles {
-	res := coldpio{}
+func New(db *sql.DB) cfiles.ColDPFiles {
+	res := cfio{db: db}
 	return &res
 }
