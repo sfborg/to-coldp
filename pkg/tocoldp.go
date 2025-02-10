@@ -1,6 +1,7 @@
 package tocoldp
 
 import (
+	"log/slog"
 	"path/filepath"
 
 	"github.com/gnames/coldp/ent/coldp"
@@ -29,10 +30,23 @@ func New(
 
 func (t *tocoldp) Export(path string) error {
 	clCfg := t.cldp.Config()
-	pathMeta := filepath.Join(clCfg.BuilderDir, "metadata.json")
+
+	slog.Info("Exporting Metadata file")
+	pathMeta := filepath.Join(clCfg.BuilderDir, "Metadata.json")
 	err := t.clf.Meta(pathMeta)
 	if err != nil {
+		slog.Error("Cannot create Metadata.json file")
 		return err
 	}
+
+	slog.Info("Exporting Reference file")
+	pathRef := filepath.Join(clCfg.BuilderDir, "Reference.tsv")
+	err = t.clf.Reference(pathRef)
+	if err != nil {
+		slog.Error("Cannot create Reference.tsv file", "error", err)
+		return err
+	}
+
+	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }
