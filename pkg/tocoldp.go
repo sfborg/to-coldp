@@ -65,6 +65,13 @@ func (t *tocoldp) Export(outputPath string) error {
 			return err
 		}
 
+		slog.Info("Exporting Synonym file")
+		path = filepath.Join(clCfg.BuilderDir, "Synonym.tsv")
+		err = t.clf.Synonym(path)
+		if err != nil {
+			slog.Error("Cannot create Synonym.tsv file", "error", err)
+			return err
+		}
 	}
 
 	slog.Info("Creation of CoLDP archive finished successfully")
