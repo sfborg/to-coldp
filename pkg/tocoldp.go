@@ -82,6 +82,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting NameRelation file")
+	path = filepath.Join(clCfg.BuilderDir, "NameRelation.tsv")
+	err = t.clf.NameRelation(path)
+	if err != nil {
+		slog.Error("Cannot create NameRelation.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }

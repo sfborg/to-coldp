@@ -8,4 +8,5 @@ type ColDPFiles interface {
 	Taxon(path string) error
 	Synonym(path string) error
 	Vernacular(path string) error
+	NameRelation(path string) error
 }
