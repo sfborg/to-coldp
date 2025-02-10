@@ -74,6 +74,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		}
 	}
 
+	slog.Info("Exporting Vernacular file")
+	path = filepath.Join(clCfg.BuilderDir, "Vernacular.tsv")
+	err = t.clf.Vernacular(path)
+	if err != nil {
+		slog.Error("Cannot create Vernacular.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }

@@ -3,6 +3,7 @@ package cfio
 import (
 	"encoding/csv"
 	"os"
+	"strconv"
 
 	"github.com/gnames/coldp/ent/coldp"
 )
@@ -40,12 +41,26 @@ FROM vernacular
 		}
 		count++
 
-		err = rows.Scan()
+		var sex string
+		err = rows.Scan(
+			&vrn.TaxonID, &vrn.SourceID, &vrn.Name, &vrn.Transliteration,
+			&vrn.Language, &vrn.Preferred, &vrn.Country, &vrn.Area,
+			&sex, &vrn.ReferenceID, &vrn.Remarks, &vrn.Modified, &vrn.ModifiedBy,
+		)
 		if err != nil {
 			return err
 		}
+		vrn.Sex = coldp.NewSex(sex)
+		var pref string
+		if vrn.Preferred.Valid {
+			pref = strconv.FormatBool(vrn.Preferred.Bool)
+		}
 
-		row := []string{}
+		row := []string{
+			vrn.TaxonID, vrn.SourceID, vrn.Name, vrn.Transliteration, vrn.Language,
+			pref, vrn.Country, vrn.Area, vrn.Sex.String(), vrn.ReferenceID,
+			vrn.Remarks, vrn.Modified, vrn.ModifiedBy,
+		}
 		err := writer.Write(row)
 		if err != nil {
 			return err
