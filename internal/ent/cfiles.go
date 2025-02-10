@@ -5,4 +5,6 @@ type ColDPFiles interface {
 	Author(path string) error
 	Reference(path string) error
 	Name(path string) error
+	Taxon(path string) error
+	Synonym(path string) error
 }

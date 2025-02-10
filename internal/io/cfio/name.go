@@ -74,8 +74,13 @@ FROM name
 		n.Status = coldp.NewNomStatus(status)
 		n.Gender = coldp.NewGender(gender)
 
-		origSpelling := strconv.FormatBool(n.OriginalSpelling.Bool)
-		gndrAgr := strconv.FormatBool(n.GenderAgreement.Bool)
+		var origSpelling, gndrAgr string
+		if n.OriginalSpelling.Valid {
+			origSpelling = strconv.FormatBool(n.OriginalSpelling.Bool)
+		}
+		if n.GenderAgreement.Valid {
+			gndrAgr = strconv.FormatBool(n.GenderAgreement.Bool)
+		}
 
 		row := []string{
 			n.ID, n.AlternativeID, n.SourceID, n.BasionymID, n.ScientificName,
