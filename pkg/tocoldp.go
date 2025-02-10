@@ -47,6 +47,17 @@ func (t *tocoldp) Export(path string) error {
 		return err
 	}
 
+	if t.cfg.WithNameUsage {
+	} else {
+		slog.Info("Exporting Name file")
+		pathRef := filepath.Join(clCfg.BuilderDir, "Name.tsv")
+		err = t.clf.Name(pathRef)
+		if err != nil {
+			slog.Error("Cannot create Name.tsv file", "error", err)
+			return err
+		}
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }
