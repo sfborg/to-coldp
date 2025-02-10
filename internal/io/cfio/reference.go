@@ -78,5 +78,13 @@ FROM reference
 			return err
 		}
 	}
+
+	// remove the file if it is empty
+	if count == 0 {
+		err = os.Remove(path)
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }

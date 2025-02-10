@@ -27,6 +27,7 @@ import (
 
 	clcfg "github.com/gnames/coldp/config"
 	"github.com/gnames/coldp/io/bldio"
+	"github.com/gnames/coldp/io/sysio"
 	"github.com/sfborg/sflib/io/archio"
 	"github.com/sfborg/sflib/io/dbio"
 	"github.com/sfborg/to-coldp/internal/io/cfio"
@@ -92,8 +93,10 @@ SQL dump format.
 		// initiate CoLDP builder
 		coldpCfg := clcfg.New()
 		cldp := bldio.New(coldpCfg)
+		sysio.ResetCache(coldpCfg)
 
 		clf := cfio.New(db)
+
 		tcdp := tocoldp.New(cfg, clf, cldp)
 
 		slog.Info("Exporting SFGA data to CoLDP")
