@@ -114,6 +114,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting Treatment file")
+	path = filepath.Join(clCfg.BuilderDir, "Treatment.tsv")
+	err = t.clf.Treatment(path)
+	if err != nil {
+		slog.Error("Cannot create Treatment.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }

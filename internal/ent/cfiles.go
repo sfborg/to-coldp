@@ -12,4 +12,5 @@ type ColDPFiles interface {
 	TypeMaterial(path string) error
 	Distribution(path string) error
 	Media(path string) error
+	Treatment(path string) error
 }
