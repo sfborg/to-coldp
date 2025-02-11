@@ -15,4 +15,5 @@ type ColDPFiles interface {
 	Treatment(path string) error
 	SpeciesEstimate(path string) error
 	TaxonProperty(path string) error
+	SpeciesInteraction(path string) error
 }

@@ -138,6 +138,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting SpeciesInteraction file")
+	path = filepath.Join(clCfg.BuilderDir, "SpeciesInteraction.tsv")
+	err = t.clf.SpeciesInteraction(path)
+	if err != nil {
+		slog.Error("Cannot create SpeciesInteraction.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }
