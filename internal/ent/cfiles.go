@@ -1,6 +1,9 @@
 package ent
 
+import clcfg "github.com/gnames/coldp/config"
+
 type ColDPFiles interface {
+	Config() clcfg.Config
 	Meta(path string) error
 	Author(path string) error
 	Reference(path string) error
@@ -16,4 +19,5 @@ type ColDPFiles interface {
 	SpeciesEstimate(path string) error
 	TaxonProperty(path string) error
 	SpeciesInteraction(path string) error
+	TaxonConceptRelation(path string) error
 }

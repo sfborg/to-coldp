@@ -26,7 +26,6 @@ import (
 	"os"
 
 	clcfg "github.com/gnames/coldp/config"
-	"github.com/gnames/coldp/io/bldio"
 	"github.com/gnames/coldp/io/sysio"
 	"github.com/sfborg/sflib/io/archio"
 	"github.com/sfborg/sflib/io/dbio"
@@ -90,14 +89,16 @@ SQL dump format.
 			os.Exit(1)
 		}
 
-		// initiate CoLDP builder
 		coldpCfg := clcfg.New()
-		cldp := bldio.New(coldpCfg)
-		sysio.ResetCache(coldpCfg)
+		err = sysio.ResetCache(coldpCfg)
+		if err != nil {
+			slog.Error("Cannot reset CoLDP cache", "error", err)
+			os.Exit(1)
+		}
 
-		clf := cfio.New(db)
+		clf := cfio.New(db, coldpCfg)
 
-		tcdp := tocoldp.New(cfg, clf, cldp)
+		tcdp := tocoldp.New(cfg, clf)
 
 		slog.Info("Exporting SFGA data to CoLDP")
 		err = tcdp.Export(coldpPath)

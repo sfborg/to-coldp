@@ -4,32 +4,28 @@ import (
 	"log/slog"
 	"path/filepath"
 
-	"github.com/gnames/coldp/ent/coldp"
 	"github.com/sfborg/to-coldp/internal/ent"
 	"github.com/sfborg/to-coldp/pkg/config"
 )
 
 type tocoldp struct {
-	cfg  config.Config
-	clf  ent.ColDPFiles
-	cldp coldp.Builder
+	cfg config.Config
+	clf ent.ColDPFiles
 }
 
 func New(
 	cfg config.Config,
 	clf ent.ColDPFiles,
-	cldp coldp.Builder,
 ) ToCoLDP {
 	res := tocoldp{
-		cfg:  cfg,
-		clf:  clf,
-		cldp: cldp,
+		cfg: cfg,
+		clf: clf,
 	}
 	return &res
 }
 
 func (t *tocoldp) Export(outputPath string) error {
-	clCfg := t.cldp.Config()
+	clCfg := t.clf.Config()
 
 	slog.Info("Exporting Metadata file")
 	path := filepath.Join(clCfg.BuilderDir, "Metadata.json")
@@ -143,6 +139,14 @@ func (t *tocoldp) Export(outputPath string) error {
 	err = t.clf.SpeciesInteraction(path)
 	if err != nil {
 		slog.Error("Cannot create SpeciesInteraction.tsv file", "error", err)
+		return err
+	}
+
+	slog.Info("Exporting TaxonConceptRelation file")
+	path = filepath.Join(clCfg.BuilderDir, "TaxonConceptRelation.tsv")
+	err = t.clf.TaxonConceptRelation(path)
+	if err != nil {
+		slog.Error("Cannot create TaxonConceptRelation.tsv file", "error", err)
 		return err
 	}
 
