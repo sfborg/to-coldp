@@ -20,10 +20,10 @@ func (c *cfio) TypeMaterial(path string) error {
 
 	q := `
 SELECT
-	id, source_id, name_id, citation, status_id, institution_code, catalog_number,
-	reference_id, locality, country, latitude, longitude, altitude, host,
-	sex_id, date, collector, associated_sequences, link, remarks, modified,
-	modified_by
+	id, source_id, name_id, citation, status_id, institution_code,
+	catalog_number, reference_id, locality, country, latitude, longitude,
+	altitude, host, sex_id, date, collector, associated_sequences, link, remarks,
+	modified, modified_by
 FROM type_material
 `
 	rows, err := c.db.Query(q)
