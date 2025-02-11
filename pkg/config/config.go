@@ -31,6 +31,9 @@ type Config struct {
 	// CacheDbDir is where SFGA database is downloaded.
 	CacheDbDir string
 
+	// CacheColdpDir is used to place newly generated CoLDP files.
+	CacheColdpDir string
+
 	// JobsNum is the number of concurrent jobs to run.
 	JobsNum int
 
@@ -96,5 +99,6 @@ func New(opts ...Option) Config {
 	}
 
 	res.CacheDbDir = filepath.Join(cacheDir, "db")
+	res.CacheColdpDir = filepath.Join(cacheDir, "coldp")
 	return res
 }

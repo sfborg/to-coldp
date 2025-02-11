@@ -25,8 +25,6 @@ import (
 	"log/slog"
 	"os"
 
-	clcfg "github.com/gnames/coldp/config"
-	"github.com/gnames/coldp/io/sysio"
 	"github.com/sfborg/sflib/io/archio"
 	"github.com/sfborg/sflib/io/dbio"
 	"github.com/sfborg/to-coldp/internal/io/cfio"
@@ -89,14 +87,11 @@ SQL dump format.
 			os.Exit(1)
 		}
 
-		coldpCfg := clcfg.New()
-		err = sysio.ResetCache(coldpCfg)
+		clf, err := cfio.New(db, cfg.CacheColdpDir)
 		if err != nil {
-			slog.Error("Cannot reset CoLDP cache", "error", err)
+			slog.Error("Cannot set CoLDP", "error", err)
 			os.Exit(1)
 		}
-
-		clf := cfio.New(db, coldpCfg)
 
 		tcdp := tocoldp.New(cfg, clf)
 

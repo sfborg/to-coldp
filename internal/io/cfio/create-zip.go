@@ -8,7 +8,7 @@ import (
 )
 
 func (c *cfio) CreateZip(path string) error {
-	sourceDir := c.clCfg.BuilderDir
+	sourceDir := c.dir
 	// Create the zip file.
 	zipfile, err := os.Create(path)
 	if err != nil {

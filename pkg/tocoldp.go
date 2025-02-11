@@ -26,10 +26,10 @@ func New(
 }
 
 func (t *tocoldp) Export(outputPath string) error {
-	clCfg := t.clf.Config()
+	base := t.cfg.CacheColdpDir
 
 	slog.Info("Exporting Metadata file")
-	path := filepath.Join(clCfg.BuilderDir, "Metadata.json")
+	path := filepath.Join(base, "Metadata.json")
 	err := t.clf.Meta(path)
 	if err != nil {
 		slog.Error("Cannot create Metadata.json file")
@@ -37,7 +37,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting Reference file")
-	path = filepath.Join(clCfg.BuilderDir, "Reference.tsv")
+	path = filepath.Join(base, "Reference.tsv")
 	err = t.clf.Reference(path)
 	if err != nil {
 		slog.Error("Cannot create Reference.tsv file", "error", err)
@@ -47,7 +47,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	if t.cfg.WithNameUsage {
 	} else {
 		slog.Info("Exporting Name file")
-		path = filepath.Join(clCfg.BuilderDir, "Name.tsv")
+		path = filepath.Join(base, "Name.tsv")
 		err = t.clf.Name(path)
 		if err != nil {
 			slog.Error("Cannot create Name.tsv file", "error", err)
@@ -55,7 +55,7 @@ func (t *tocoldp) Export(outputPath string) error {
 		}
 
 		slog.Info("Exporting Taxon file")
-		path = filepath.Join(clCfg.BuilderDir, "Taxon.tsv")
+		path = filepath.Join(base, "Taxon.tsv")
 		err = t.clf.Taxon(path)
 		if err != nil {
 			slog.Error("Cannot create Taxon.tsv file", "error", err)
@@ -63,7 +63,7 @@ func (t *tocoldp) Export(outputPath string) error {
 		}
 
 		slog.Info("Exporting Synonym file")
-		path = filepath.Join(clCfg.BuilderDir, "Synonym.tsv")
+		path = filepath.Join(base, "Synonym.tsv")
 		err = t.clf.Synonym(path)
 		if err != nil {
 			slog.Error("Cannot create Synonym.tsv file", "error", err)
@@ -72,7 +72,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting Vernacular file")
-	path = filepath.Join(clCfg.BuilderDir, "Vernacular.tsv")
+	path = filepath.Join(base, "Vernacular.tsv")
 	err = t.clf.Vernacular(path)
 	if err != nil {
 		slog.Error("Cannot create Vernacular.tsv file", "error", err)
@@ -80,7 +80,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting NameRelation file")
-	path = filepath.Join(clCfg.BuilderDir, "NameRelation.tsv")
+	path = filepath.Join(base, "NameRelation.tsv")
 	err = t.clf.NameRelation(path)
 	if err != nil {
 		slog.Error("Cannot create NameRelation.tsv file", "error", err)
@@ -88,7 +88,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting TypeMaterial file")
-	path = filepath.Join(clCfg.BuilderDir, "TypeMaterial.tsv")
+	path = filepath.Join(base, "TypeMaterial.tsv")
 	err = t.clf.TypeMaterial(path)
 	if err != nil {
 		slog.Error("Cannot create TypeMaterial.tsv file", "error", err)
@@ -96,7 +96,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting Distribution file")
-	path = filepath.Join(clCfg.BuilderDir, "Distribution.tsv")
+	path = filepath.Join(base, "Distribution.tsv")
 	err = t.clf.Distribution(path)
 	if err != nil {
 		slog.Error("Cannot create Distribution.tsv file", "error", err)
@@ -104,7 +104,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting Media file")
-	path = filepath.Join(clCfg.BuilderDir, "Media.tsv")
+	path = filepath.Join(base, "Media.tsv")
 	err = t.clf.Media(path)
 	if err != nil {
 		slog.Error("Cannot create Media.tsv file", "error", err)
@@ -112,7 +112,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting Treatment file")
-	path = filepath.Join(clCfg.BuilderDir, "Treatment.tsv")
+	path = filepath.Join(base, "Treatment.tsv")
 	err = t.clf.Treatment(path)
 	if err != nil {
 		slog.Error("Cannot create Treatment.tsv file", "error", err)
@@ -120,7 +120,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting SpeciesEstimate file")
-	path = filepath.Join(clCfg.BuilderDir, "SpeciesEstimate.tsv")
+	path = filepath.Join(base, "SpeciesEstimate.tsv")
 	err = t.clf.SpeciesEstimate(path)
 	if err != nil {
 		slog.Error("Cannot create SpeciesEstimate.tsv file", "error", err)
@@ -128,7 +128,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting TaxonProperty file")
-	path = filepath.Join(clCfg.BuilderDir, "TaxonProperty.tsv")
+	path = filepath.Join(base, "TaxonProperty.tsv")
 	err = t.clf.TaxonProperty(path)
 	if err != nil {
 		slog.Error("Cannot create TaxonProperty.tsv file", "error", err)
@@ -136,7 +136,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting SpeciesInteraction file")
-	path = filepath.Join(clCfg.BuilderDir, "SpeciesInteraction.tsv")
+	path = filepath.Join(base, "SpeciesInteraction.tsv")
 	err = t.clf.SpeciesInteraction(path)
 	if err != nil {
 		slog.Error("Cannot create SpeciesInteraction.tsv file", "error", err)
@@ -144,7 +144,7 @@ func (t *tocoldp) Export(outputPath string) error {
 	}
 
 	slog.Info("Exporting TaxonConceptRelation file")
-	path = filepath.Join(clCfg.BuilderDir, "TaxonConceptRelation.tsv")
+	path = filepath.Join(base, "TaxonConceptRelation.tsv")
 	err = t.clf.TaxonConceptRelation(path)
 	if err != nil {
 		slog.Error("Cannot create TaxonConceptRelation.tsv file", "error", err)

@@ -1,9 +1,6 @@
 package ent
 
-import clcfg "github.com/gnames/coldp/config"
-
 type ColDPFiles interface {
-	Config() clcfg.Config
 	CreateZip(path string) error
 
 	Meta(path string) error
