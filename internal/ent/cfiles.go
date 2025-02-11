@@ -11,4 +11,5 @@ type ColDPFiles interface {
 	NameRelation(path string) error
 	TypeMaterial(path string) error
 	Distribution(path string) error
+	Media(path string) error
 }

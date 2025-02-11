@@ -106,6 +106,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting Media file")
+	path = filepath.Join(clCfg.BuilderDir, "Media.tsv")
+	err = t.clf.Media(path)
+	if err != nil {
+		slog.Error("Cannot create Media.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }
