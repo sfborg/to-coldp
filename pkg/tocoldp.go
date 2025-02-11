@@ -98,6 +98,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting Distribution file")
+	path = filepath.Join(clCfg.BuilderDir, "Distribution.tsv")
+	err = t.clf.Distribution(path)
+	if err != nil {
+		slog.Error("Cannot create Distribution.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }

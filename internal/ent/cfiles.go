@@ -10,4 +10,5 @@ type ColDPFiles interface {
 	Vernacular(path string) error
 	NameRelation(path string) error
 	TypeMaterial(path string) error
+	Distribution(path string) error
 }
