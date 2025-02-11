@@ -130,6 +130,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting TaxonProperty file")
+	path = filepath.Join(clCfg.BuilderDir, "TaxonProperty.tsv")
+	err = t.clf.TaxonProperty(path)
+	if err != nil {
+		slog.Error("Cannot create TaxonProperty.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }
