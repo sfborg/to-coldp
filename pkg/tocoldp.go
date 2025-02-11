@@ -122,6 +122,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting SpeciesEstimate file")
+	path = filepath.Join(clCfg.BuilderDir, "SpeciesEstimate.tsv")
+	err = t.clf.SpeciesEstimate(path)
+	if err != nil {
+		slog.Error("Cannot create SpeciesEstimate.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }

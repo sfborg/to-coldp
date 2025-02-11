@@ -13,4 +13,5 @@ type ColDPFiles interface {
 	Distribution(path string) error
 	Media(path string) error
 	Treatment(path string) error
+	SpeciesEstimate(path string) error
 }
