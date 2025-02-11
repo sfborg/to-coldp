@@ -9,4 +9,5 @@ type ColDPFiles interface {
 	Synonym(path string) error
 	Vernacular(path string) error
 	NameRelation(path string) error
+	TypeMaterial(path string) error
 }

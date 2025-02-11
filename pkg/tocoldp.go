@@ -90,6 +90,14 @@ func (t *tocoldp) Export(outputPath string) error {
 		return err
 	}
 
+	slog.Info("Exporting TypeMaterial file")
+	path = filepath.Join(clCfg.BuilderDir, "TypeMaterial.tsv")
+	err = t.clf.TypeMaterial(path)
+	if err != nil {
+		slog.Error("Cannot create TypeMaterial.tsv file", "error", err)
+		return err
+	}
+
 	slog.Info("Creation of CoLDP archive finished successfully")
 	return nil
 }
