@@ -4,6 +4,8 @@ import clcfg "github.com/gnames/coldp/config"
 
 type ColDPFiles interface {
 	Config() clcfg.Config
+	CreateZip(path string) error
+
 	Meta(path string) error
 	Author(path string) error
 	Reference(path string) error

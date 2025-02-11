@@ -3,6 +3,7 @@ package tocoldp
 import (
 	"log/slog"
 	"path/filepath"
+	"strings"
 
 	"github.com/sfborg/to-coldp/internal/ent"
 	"github.com/sfborg/to-coldp/pkg/config"
@@ -147,6 +148,16 @@ func (t *tocoldp) Export(outputPath string) error {
 	err = t.clf.TaxonConceptRelation(path)
 	if err != nil {
 		slog.Error("Cannot create TaxonConceptRelation.tsv file", "error", err)
+		return err
+	}
+
+	if !strings.HasSuffix(outputPath, ".zip") {
+		outputPath += ".zip"
+	}
+	slog.Info("Creating Zip file", "path", outputPath)
+	err = t.clf.CreateZip(outputPath)
+	if err != nil {
+		slog.Error("Cannot create zipped archive", "error", err)
 		return err
 	}
 

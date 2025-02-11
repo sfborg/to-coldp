@@ -87,13 +87,19 @@ FROM taxon
 			tx.TemporalRangeStart.String(), tx.TemporalRangeEnd.String(),
 			tx.Environment.String(), tx.Species, tx.Section, tx.Subgenus, tx.Genus,
 			tx.Subtribe, tx.Tribe, tx.Subfamily, tx.Family, tx.Superfamily,
-			tx.Suborder, tx.Order, tx.Subclass, tx.Subphylum, tx.Phylum, tx.Kingdom,
-			tx.ReferenceID, tx.Link, tx.Remarks, tx.Modified, tx.ModifiedBy,
+			tx.Suborder, tx.Order, tx.Subclass, tx.Class, tx.Subphylum, tx.Phylum,
+			tx.Kingdom, tx.ReferenceID, tx.Link, tx.Remarks, tx.Modified,
+			tx.ModifiedBy,
 		}
 		err := writer.Write(row)
 		if err != nil {
 			return err
 		}
+	}
+
+	writer.Flush()
+	if err := writer.Error(); err != nil {
+		return err
 	}
 
 	// remove the file if it is empty

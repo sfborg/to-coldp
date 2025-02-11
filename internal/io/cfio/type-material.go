@@ -82,6 +82,11 @@ FROM type_material
 		}
 	}
 
+	writer.Flush()
+	if err := writer.Error(); err != nil {
+		return err
+	}
+
 	// remove the file if it is empty
 	if count == 0 {
 		err = os.Remove(path)
