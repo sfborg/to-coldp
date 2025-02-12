@@ -2,23 +2,22 @@ module github.com/sfborg/to-coldp
 
 go 1.23.5
 
-replace github.com/gnames/coldp => ../coldp
-
 require (
-	github.com/gnames/coldp v0.0.0-00010101000000-000000000000
+	github.com/gnames/coldp v0.3.7
 	github.com/gnames/gnlib v0.44.0
+	github.com/gnames/gnsys v0.3.4
 	github.com/lmittmann/tint v1.0.7
-	github.com/sfborg/sflib v0.1.7
+	github.com/sfborg/sflib v0.1.8
 	github.com/spf13/cobra v1.8.1
 )
 
 require (
+	github.com/Masterminds/semver/v3 v3.3.1 // indirect
 	github.com/VividCortex/ewma v1.2.0 // indirect
 	github.com/cheggaaa/pb/v3 v3.1.5 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/color v1.17.0 // indirect
 	github.com/gnames/gnfmt v0.5.3 // indirect
-	github.com/gnames/gnsys v0.3.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect

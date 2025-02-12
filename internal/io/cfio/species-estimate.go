@@ -20,7 +20,7 @@ func (c *cfio) SpeciesEstimate(path string) error {
 
 	q := `
 SELECT
-	taxon_id, source_id, estimate, type, reference_id, remarks,
+	taxon_id, source_id, estimate, type_id, reference_id, remarks,
 	modified, modified_by
 FROM species_estimate
 `

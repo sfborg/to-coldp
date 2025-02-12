@@ -87,6 +87,15 @@ SQL dump format.
 			os.Exit(1)
 		}
 
+		isComp := sfdb.IsCompatible(cfg.MinVersionSFGA)
+		if !isComp {
+			ver := sfdb.Version()
+			slog.Error("Incompatible SFGA version",
+				"want", cfg.MinVersionSFGA, "got", ver,
+			)
+			os.Exit(1)
+		}
+
 		clf, err := cfio.New(db, cfg.CacheColdpDir)
 		if err != nil {
 			slog.Error("Cannot set CoLDP", "error", err)

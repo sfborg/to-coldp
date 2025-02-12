@@ -19,7 +19,7 @@ func (c *cfio) TaxonConceptRelation(path string) error {
 
 	q := `
 SELECT
-	taxon_id, related_taxon_id, source_id, type, reference_id,
+	taxon_id, related_taxon_id, source_id, type_id, reference_id,
 	remarks, modified, modified_by
 FROM taxon_concept_relation
 `

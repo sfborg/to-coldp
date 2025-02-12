@@ -10,10 +10,7 @@ var (
 	repoURL = "https://github.com/sfborg/sfga"
 
 	// tag of the sfga repo to get correct schema version.
-	verSFGA = "v0.3.23"
-
-	// schemaHash is the sha256 sum of the correponding schema version.
-	schemaHash = "678b7d8e7658"
+	verSFGA = "v0.3.24"
 
 	// jobsNum is the default number of concurrent jobs to run.
 	jobsNum = 5
@@ -90,9 +87,10 @@ func New(opts ...Option) Config {
 	cacheDir = filepath.Join(cacheDir, "sfborg", "to", "coldp")
 
 	res := Config{
-		CacheDir:  cacheDir,
-		BatchSize: 50_000,
-		JobsNum:   4,
+		MinVersionSFGA: verSFGA,
+		CacheDir:       cacheDir,
+		BatchSize:      50_000,
+		JobsNum:        4,
 	}
 	for _, o := range opts {
 		o(&res)

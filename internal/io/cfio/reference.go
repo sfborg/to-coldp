@@ -19,7 +19,7 @@ func (c *cfio) Reference(path string) error {
 
 	q := `
 SELECT
-	id, alternative_id, source_id, citation, type, author, author_id,
+	id, alternative_id, source_id, citation, type_id, author, author_id,
 	editor, editor_id, title, title_short, container_author,
 	container_title, container_title_short, issued, accessed,
 	collection_title, collection_editor, volume, issue,

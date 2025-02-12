@@ -1,7 +1,6 @@
 package cfio
 
 import (
-	"database/sql"
 	"encoding/csv"
 	"os"
 
@@ -41,20 +40,14 @@ FROM name_relation
 		}
 		count++
 
-		// TODO remove when bug is fixed in sfga archives
-		var srcID sql.NullString
 		var typ string
 		err = rows.Scan(
-			&nr.NameID, &nr.RelatedNameID, &srcID, &typ, &nr.RelatedNameID,
+			&nr.NameID, &nr.RelatedNameID, &nr.SourceID, &typ, &nr.RelatedNameID,
 			&nr.Remarks, &nr.Modified, &nr.ModifiedBy,
 		)
 		if err != nil {
 			return err
 		}
-
-		// workaround the bug in schema, SourceID had no default string
-		// in v0.3.22
-		nr.SourceID = srcID.String
 
 		nr.Type = coldp.NewNomRelType(typ)
 
