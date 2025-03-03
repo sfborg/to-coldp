@@ -19,10 +19,11 @@ func (c *cfio) Author(path string) error {
 
 	q := `
 SELECT
-	id, source_id, alternative_id, given, family, suffix,
-	abbreviation_botany, alternative_names, sex_id, country,
-	birth, birth_place, death, affiliation, interest,
-	reference_id, link, remarks, modified, modified_by
+	col__id, col__source_id, col__alternative_id, col__given, col__family,
+	col__suffix, col__abbreviation_botany, col__alternative_names, col__sex_id,
+	col__country, col__birth, col__birth_place, col__death, col__affiliation,
+	col__interest, col__reference_id, col__link, col__remarks, col__modified,
+	col__modified_by
 FROM author
 `
 	rows, err := c.db.Query(q)
@@ -44,12 +45,12 @@ FROM author
 
 		var sex string
 		err = rows.Scan(
-			&au.ID, &au.SourceID, &au.AlternativeID, &au.Given, &au.Family,
-			&au.Suffix, &au.AbbreviationBotany, &au.AlternativeNames, &sex,
-			&au.Country, &au.Birth, &au.BirthPlace, &au.Death, &au.Affiliation,
-			&au.Interest, &au.ReferenceID, &au.Link, &au.Remarks,
-			&au.Modified, &au.ModifiedBy,
+			&au.ID, &au.SourceID, &au.AlternativeID, &au.Given, &au.Family, &au.Suffix,
+			&au.AbbreviationBotany, &au.AlternativeNames, &sex, &au.Country, &au.Birth,
+			&au.BirthPlace, &au.Death, &au.Affiliation, &au.Interest, &au.ReferenceID,
+			&au.Link, &au.Remarks, &au.Modified, &au.ModifiedBy,
 		)
+
 		if err != nil {
 			return err
 		}

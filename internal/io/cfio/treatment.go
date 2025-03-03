@@ -19,7 +19,8 @@ func (c *cfio) Treatment(path string) error {
 
 	q := `
 SELECT
-	taxon_id, source_id, document, format, modified, modified_by
+	col__taxon_id, col__source_id, col__document, col__format, col__modified,
+	col__modified_by
 FROM treatment
 `
 	rows, err := c.db.Query(q)

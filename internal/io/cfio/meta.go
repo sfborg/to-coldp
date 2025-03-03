@@ -28,10 +28,10 @@ func (c *cfio) Meta(path string) error {
 func (c *cfio) dbMeta() (*coldp.Meta, error) {
 	q := `
 SELECT
-	doi, title, alias, description, issued, version, keywords,
-	geographic_scope, taxonomic_scope, temporal_scope,
-	confidence, completeness, license, url, logo, label,
-	citation, private
+	col__doi, col__title, col__alias, col__description, col__issued,
+	col__version, col__keywords, col__geographic_scope, col__taxonomic_scope,
+	col__temporal_scope, col__confidence, col__completeness, col__license,
+	col__url, col__logo, col__label, col__citation, col__private
   FROM metadata LIMIT 1
 `
 	res := coldp.Meta{}
@@ -81,7 +81,8 @@ SELECT
 func (c *cfio) getActor(table string) (*coldp.Actor, error) {
 	q := fmt.Sprintf(`
 SELECT
-		orcid, given, family, rorid, organisation, email, url, note
+		col__orcid, col__given, col__family, col__rorid, col__organisation,
+	  col__email, col__url, col__note
 	FROM %s
 	LIMIT 1
 `, table)
@@ -106,7 +107,8 @@ func (c *cfio) getActors(table string) ([]coldp.Actor, error) {
 	var res []coldp.Actor
 	q := fmt.Sprintf(`
 SELECT
-		orcid, given, family, rorid, organisation, email, url, note
+		col__orcid, col__given, col__family, col__rorid, col__organisation,
+		col__email, col__url, col__note
 	FROM %s
 `, table)
 	rows, err := c.db.Query(q)
@@ -134,7 +136,7 @@ func (c *cfio) getSources() ([]coldp.Source, error) {
 	var res []coldp.Source
 	q := `
 SELECT
-		type, title, authors, issued, isbn
+		col__type, col__title, col__authors, col__issued, col__:wisbn
 	FROM source
 `
 	rows, err := c.db.Query(q)

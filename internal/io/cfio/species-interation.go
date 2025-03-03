@@ -19,8 +19,9 @@ func (c *cfio) SpeciesInteraction(path string) error {
 
 	q := `
 SELECT
-	taxon_id, related_taxon_id, source_id, related_taxon_scientific_name,
-	type_id, reference_id, remarks, modified, modified_by
+	col__taxon_id, col__related_taxon_id, col__source_id,
+	col__related_taxon_scientific_name, col__type_id, col__reference_id,
+	col__remarks, col__modified, col__modified_by
 FROM species_interaction
 `
 	rows, err := c.db.Query(q)

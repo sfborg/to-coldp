@@ -20,13 +20,16 @@ func (c *cfio) Taxon(path string) error {
 
 	q := `
 SELECT
-	id, alternative_id, source_id, parent_id, ordinal, branch_length,
-	name_id, name_phrase, according_to_id, according_to_page,
-	according_to_page_link, scrutinizer, scrutinizer_id, status_id,
-	extinct, temporal_range_start_id, temporal_range_end_id, environment_id,
-	species, section, subgenus, genus, subtribe, tribe, subfamily, family,
-	superfamily, suborder, "order", subclass, class, subphylum, phylum,
-	kingdom, reference_id, link, remarks, modified, modified_by
+	col__id, col__alternative_id, col__source_id, col__parent_id, col__ordinal,
+	col__branch_length, col__name_id, col__name_phrase, col__according_to_id,
+	col__according_to_page, col__according_to_page_link, col__scrutinizer,
+	col__scrutinizer_id, col__status_id, col__extinct,
+	col__temporal_range_start_id, col__temporal_range_end_id,
+	col__environment_id, col__species, col__section, col__subgenus, col__genus,
+	col__subtribe, col__tribe, col__subfamily, col__family, col__superfamily,
+	col__suborder, col__order, col__subclass, col__class, col__subphylum,
+	col__phylum, col__kingdom, col__reference_id, col__link, col__remarks,
+	col__modified, col__modified_by
 FROM taxon
 `
 	rows, err := c.db.Query(q)

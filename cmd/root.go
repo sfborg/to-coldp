@@ -25,8 +25,8 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/sfborg/sflib/io/archio"
-	"github.com/sfborg/sflib/io/dbio"
+	"github.com/gnames/gnsys"
+	"github.com/sfborg/sflib/io/sfgaio"
 	"github.com/sfborg/to-coldp/internal/io/cfio"
 	tocoldp "github.com/sfborg/to-coldp/pkg"
 	"github.com/sfborg/to-coldp/pkg/config"
@@ -66,30 +66,30 @@ SQL dump format.
 
 		slog.Info("Extracting SFGA data", "path", sfgaPath)
 
-		// initiate sfga file
-		sfga, err := archio.New(sfgaPath, cfg.CacheDir)
+		err := prepareFileStructure()
 		if err != nil {
-			slog.Error("Cannot initialize SFGA archive", "error", err)
+			slog.Error("Cannot setup cache file structure", "error", err)
 			os.Exit(1)
 		}
 
-		err = sfga.Extract()
+		// initiate sfga file
+		sfga := sfgaio.New()
+
+		err = sfga.Import(sfgaPath, cfg.CacheSfgaDir)
 		if err != nil {
 			slog.Error("Cannot extract SFGA archive", "error", err)
 			os.Exit(1)
 		}
 
-		// initiate sfga db instance
-		sfdb := dbio.New(cfg.CacheDbDir)
-		db, err := sfdb.Connect()
+		db, err := sfga.Connect()
 		if err != nil {
 			slog.Error("Cannot connect to SFGA database", "error", err)
 			os.Exit(1)
 		}
 
-		isComp := sfdb.IsCompatible(cfg.MinVersionSFGA)
+		isComp := sfga.IsCompatible(cfg.MinVersionSFGA)
 		if !isComp {
-			ver := sfdb.Version()
+			ver := sfga.Version()
 			slog.Error("Incompatible SFGA version",
 				"want", cfg.MinVersionSFGA, "got", ver,
 			)
@@ -122,14 +122,31 @@ func Execute() {
 	}
 }
 
+func prepareFileStructure() error {
+	var err error
+	cfg := config.New()
+	root := cfg.CacheDir
+	err = gnsys.MakeDir(root)
+	if err != nil {
+		return err
+	}
+	err = gnsys.CleanDir(root)
+	if err != nil {
+		return err
+	}
+	dirs := []string{
+		cfg.CacheColdpDir,
+		cfg.CacheSfgaDir,
+	}
+	for _, v := range dirs {
+		err = gnsys.MakeDir(v)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.to-coldp.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

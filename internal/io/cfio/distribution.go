@@ -19,8 +19,9 @@ func (c *cfio) Distribution(path string) error {
 
 	q := `
 SELECT
-	taxon_id, source_id, area, area_id, gazetteer_id, status_id,
-	reference_id, remarks, modified, modified_by
+	col__taxon_id, col__source_id, col__area, col__area_id, col__gazetteer_id,
+	col__status_id, col__reference_id, col__remarks, col__modified,
+	col__modified_by
 FROM distribution
 `
 	rows, err := c.db.Query(q)

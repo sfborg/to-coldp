@@ -20,8 +20,9 @@ func (c *cfio) TaxonProperty(path string) error {
 
 	q := `
 SELECT
-	taxon_id, source_id, property, value, reference_id, page, ordinal,
-	remarks, modified, modified_by
+	col__taxon_id, col__source_id, col__property, col__value,
+	col__reference_id, col__page, col__ordinal, col__remarks, col__modified,
+	col__modified_by
 FROM taxon_property
 `
 	rows, err := c.db.Query(q)

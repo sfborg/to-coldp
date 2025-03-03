@@ -19,8 +19,9 @@ func (c *cfio) Media(path string) error {
 
 	q := `
 SELECT
-	taxon_id, source_id, url, type, format, title, created, creator,
-	license, link, remarks, modified, modified_by
+	col__taxon_id, col__source_id, col__url, col__type, col__format,
+	col__title, col__created, col__creator, col__license, col__link,
+	col__remarks, col__modified, col__modified_by
 FROM media
 `
 	rows, err := c.db.Query(q)

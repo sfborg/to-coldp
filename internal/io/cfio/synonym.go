@@ -19,8 +19,9 @@ func (c *cfio) Synonym(path string) error {
 
 	q := `
 SELECT
-	id, taxon_id, source_id, name_id, name_phrase, according_to_id,
-	status_id, reference_id, link, remarks, modified, modified_by
+	col__id, col__taxon_id, col__source_id, col__name_id, col__name_phrase,
+	col__according_to_id, col__status_id, col__reference_id, col__link,
+	col__remarks, col__modified, col__modified_by
 FROM synonym
 `
 	rows, err := c.db.Query(q)

@@ -10,7 +10,7 @@ var (
 	repoURL = "https://github.com/sfborg/sfga"
 
 	// tag of the sfga repo to get correct schema version.
-	verSFGA = "v0.3.24"
+	verSFGA = "v0.3.25"
 
 	// jobsNum is the default number of concurrent jobs to run.
 	jobsNum = 5
@@ -25,8 +25,8 @@ type Config struct {
 	// SFGA data.
 	CacheDir string
 
-	// CacheDbDir is where SFGA database is downloaded.
-	CacheDbDir string
+	// CacheSfgaDir is where SFGA database is downloaded.
+	CacheSfgaDir string
 
 	// CacheColdpDir is used to place newly generated CoLDP files.
 	CacheColdpDir string
@@ -96,7 +96,7 @@ func New(opts ...Option) Config {
 		o(&res)
 	}
 
-	res.CacheDbDir = filepath.Join(cacheDir, "db")
+	res.CacheSfgaDir = filepath.Join(cacheDir, "sfga")
 	res.CacheColdpDir = filepath.Join(cacheDir, "coldp")
 	return res
 }

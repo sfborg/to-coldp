@@ -19,8 +19,8 @@ func (c *cfio) NameRelation(path string) error {
 
 	q := `
 SELECT
-	name_id, related_name_id, source_id, type_id, reference_id, remarks,
-	modified, modified_by
+	col__name_id, col__related_name_id, col__source_id, col__type_id,
+	col__reference_id, col__remarks, col__modified, col__modified_by
 FROM name_relation
 `
 	rows, err := c.db.Query(q)

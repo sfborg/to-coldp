@@ -20,16 +20,19 @@ func (c *cfio) Name(path string) error {
 
 	q := `
 SELECT
-	id, alternative_id, source_id, scientific_name, authorship,
-	rank_id, uninomial, genus, infrageneric_epithet, specific_epithet,
-	infraspecific_epithet, cultivar_epithet, notho_id, original_spelling,
-	combination_authorship, combination_authorship_id, 
-	combination_ex_authorship, combination_ex_authorship_id,
-	combination_authorship_year, basionym_authorship, basionym_authorship_id,
-	basionym_ex_authorship, basionym_ex_authorship_id,
-	basionym_authorship_year, code_id, status_id, reference_id, published_in_year,
-	published_in_page, published_in_page_link, gender_id, gender_agreement,
-	etymology, link, remarks, modified, modified_by
+	col__id, col__alternative_id, col__source_id, col__scientific_name,
+	col__authorship, col__rank_id, col__uninomial, col__genus,
+	col__infrageneric_epithet, col__specific_epithet,
+	col__infraspecific_epithet, col__cultivar_epithet, col__notho_id,
+	col__original_spelling, col__combination_authorship,
+	col__combination_authorship_id, col__combination_ex_authorship,
+	col__combination_ex_authorship_id, col__combination_authorship_year,
+	col__basionym_authorship, col__basionym_authorship_id,
+	col__basionym_ex_authorship, col__basionym_ex_authorship_id,
+	col__basionym_authorship_year, col__code_id, col__status_id,
+	col__reference_id, col__published_in_year, col__published_in_page,
+	col__published_in_page_link, col__gender_id, col__gender_agreement,
+	col__etymology, col__link, col__remarks, col__modified, col__modified_by
 FROM name
 `
 	rows, err := c.db.Query(q)
