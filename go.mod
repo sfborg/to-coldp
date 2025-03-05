@@ -3,11 +3,11 @@ module github.com/sfborg/to-coldp
 go 1.23.6
 
 require (
-	github.com/gnames/coldp v0.3.10
-	github.com/gnames/gnlib v0.45.0
+	github.com/gnames/coldp v0.3.12
+	github.com/gnames/gnlib v0.46.0
 	github.com/gnames/gnsys v0.3.8
 	github.com/lmittmann/tint v1.0.7
-	github.com/sfborg/sflib v0.2.5
+	github.com/sfborg/sflib v0.2.6
 	github.com/spf13/cobra v1.9.1
 )
 
@@ -17,6 +17,10 @@ require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/gnames/gnfmt v0.5.4 // indirect
+	github.com/gnames/gnparser v1.11.2 // indirect
+	github.com/gnames/gnuuid v0.2.0 // indirect
+	github.com/gnames/organizer v0.1.1 // indirect
+	github.com/gnames/tribool v0.1.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -31,6 +35,7 @@ require (
 	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/ulikunitz/xz v0.5.12 // indirect
 	golang.org/x/exp v0.0.0-20250228200357-dead58393ab7 // indirect
+	golang.org/x/net v0.35.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
 	modernc.org/libc v1.61.13 // indirect
