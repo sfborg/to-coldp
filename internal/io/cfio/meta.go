@@ -82,7 +82,7 @@ func (c *cfio) getActor(table string) (*coldp.Actor, error) {
 	q := fmt.Sprintf(`
 SELECT
 		col__orcid, col__given, col__family, col__rorid, col__organisation,
-	  col__email, col__url, col__note
+	  col__email, col__url, col__note, col__city, col__country, col__state
 	FROM %s
 	LIMIT 1
 `, table)
@@ -91,7 +91,7 @@ SELECT
 
 	err := row.Scan(
 		&res.Orcid, &res.Given, &res.Family, &res.RorID, &res.Organization,
-		&res.Email, &res.URL, &res.Note,
+		&res.Email, &res.URL, &res.Note, &res.City, &res.Country, &res.State,
 	)
 
 	if err == sql.ErrNoRows {
@@ -136,7 +136,7 @@ func (c *cfio) getSources() ([]coldp.Source, error) {
 	var res []coldp.Source
 	q := `
 SELECT
-		col__type, col__title, col__authors, col__issued, col__:wisbn
+		col__type, col__title, col__authors, col__issued, col__isbn
 	FROM source
 `
 	rows, err := c.db.Query(q)
