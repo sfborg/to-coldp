@@ -149,4 +149,5 @@ func prepareFileStructure() error {
 }
 
 func init() {
+	rootCmd.Flags().BoolP("version", "V", false, "shows app's version")
 }
