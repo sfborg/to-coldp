@@ -108,7 +108,7 @@ func (c *cfio) getActors(table string) ([]coldp.Actor, error) {
 	q := fmt.Sprintf(`
 SELECT
 		col__orcid, col__given, col__family, col__rorid, col__organisation,
-		col__email, col__url, col__note
+	  col__email, col__url, col__note, col__city, col__country, col__state
 	FROM %s
 `, table)
 	rows, err := c.db.Query(q)
@@ -121,7 +121,7 @@ SELECT
 		var act coldp.Actor
 		err := rows.Scan(
 			&act.Orcid, &act.Given, &act.Family, &act.RorID, &act.Organization,
-			&act.Email, &act.URL, &act.Note,
+			&act.Email, &act.URL, &act.Note, &act.City, &act.Country, &act.State,
 		)
 		if err != nil {
 			return nil, err
