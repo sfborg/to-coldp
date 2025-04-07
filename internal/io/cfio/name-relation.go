@@ -42,7 +42,7 @@ FROM name_relation
 
 		var typ string
 		err = rows.Scan(
-			&nr.NameID, &nr.RelatedNameID, &nr.SourceID, &typ, &nr.RelatedNameID,
+			&nr.NameID, &nr.RelatedNameID, &nr.SourceID, &typ, &nr.ReferenceID,
 			&nr.Remarks, &nr.Modified, &nr.ModifiedBy,
 		)
 		if err != nil {
@@ -53,7 +53,7 @@ FROM name_relation
 
 		row := []string{
 			nr.NameID, nr.RelatedNameID, nr.SourceID, nr.Type.String(),
-			nr.RelatedNameID, nr.Remarks, nr.Modified, nr.ModifiedBy,
+			nr.ReferenceID, nr.Remarks, nr.Modified, nr.ModifiedBy,
 		}
 		err := writer.Write(row)
 		if err != nil {
