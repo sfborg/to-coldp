@@ -71,11 +71,11 @@ func (t *tocoldp) Export(outputPath string) error {
 		}
 	}
 
-	slog.Info("Exporting Vernacular file")
-	path = filepath.Join(base, "Vernacular.tsv")
-	err = t.clf.Vernacular(path)
+	slog.Info("Exporting VernacularName file")
+	path = filepath.Join(base, "VernacularName.tsv")
+	err = t.clf.VernacularName(path)
 	if err != nil {
-		slog.Error("Cannot create Vernacular.tsv file", "error", err)
+		slog.Error("Cannot create VernacularName.tsv file", "error", err)
 		return err
 	}
 

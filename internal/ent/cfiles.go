@@ -9,7 +9,7 @@ type ColDPFiles interface {
 	Name(path string) error
 	Taxon(path string) error
 	Synonym(path string) error
-	Vernacular(path string) error
+	VernacularName(path string) error
 	NameRelation(path string) error
 	TypeMaterial(path string) error
 	Distribution(path string) error

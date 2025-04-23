@@ -8,7 +8,7 @@ import (
 	"github.com/gnames/coldp/ent/coldp"
 )
 
-func (c *cfio) Vernacular(path string) error {
+func (c *cfio) VernacularName(path string) error {
 	f, err := os.Create(path) // Create/open the file
 	if err != nil {
 		return err
