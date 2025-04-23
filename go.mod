@@ -6,10 +6,10 @@ require (
 	github.com/gnames/coldp v0.3.15
 	github.com/gnames/gnlib v0.46.0
 	github.com/gnames/gnsys v0.3.8
+	github.com/goccy/go-yaml v1.17.1
 	github.com/lmittmann/tint v1.0.7
 	github.com/sfborg/sflib v0.2.9
 	github.com/spf13/cobra v1.9.1
-	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (

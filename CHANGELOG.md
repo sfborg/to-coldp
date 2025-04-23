@@ -5,7 +5,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [v0.1.2] - 2025-03-11
+## [v0.1.3] - 2025-04-23
+Switch to go-yaml
+
+## [v0.1.2] - 2025-04-23
 Fix [#24]: Switch to metadata.yaml
 Fix [#23]: VernacularName table
 Fix [#22]: NameRelation fields

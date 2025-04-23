@@ -8,7 +8,7 @@ import (
 
 	"github.com/gnames/coldp/ent/coldp"
 	"github.com/gnames/gnlib"
-	"gopkg.in/yaml.v3"
+	"github.com/goccy/go-yaml"
 )
 
 func (c *cfio) Meta(path string) error {
