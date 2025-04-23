@@ -29,10 +29,10 @@ func (t *tocoldp) Export(outputPath string) error {
 	base := t.cfg.CacheColdpDir
 
 	slog.Info("Exporting Metadata file")
-	path := filepath.Join(base, "Metadata.json")
+	path := filepath.Join(base, "metadata.yaml")
 	err := t.clf.Meta(path)
 	if err != nil {
-		slog.Error("Cannot create Metadata.json file")
+		slog.Error("Cannot create Metadata.yaml file")
 		return err
 	}
 

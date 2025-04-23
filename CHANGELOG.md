@@ -5,6 +5,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.1.2] - 2025-03-11
+Fix [#24]: Switch to metadata.yaml
+Fix [#23]: VernacularName table
+Fix [#22]: NameRelation fields
+
+
 ## [v0.1.1] - 2025-03-11
 
 Add: city, country, state to meta.

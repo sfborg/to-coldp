@@ -2,13 +2,13 @@ package cfio
 
 import (
 	"database/sql"
-	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
 
 	"github.com/gnames/coldp/ent/coldp"
 	"github.com/gnames/gnlib"
+	"gopkg.in/yaml.v3"
 )
 
 func (c *cfio) Meta(path string) error {
@@ -17,7 +17,7 @@ func (c *cfio) Meta(path string) error {
 		return err
 	}
 
-	bs, err := json.MarshalIndent(res, "", " ")
+	bs, err := yaml.Marshal(res)
 	if err != nil {
 		return err
 	}

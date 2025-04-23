@@ -9,6 +9,7 @@ require (
 	github.com/lmittmann/tint v1.0.7
 	github.com/sfborg/sflib v0.2.9
 	github.com/spf13/cobra v1.9.1
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
