@@ -10,7 +10,7 @@ var (
 	repoURL = "https://github.com/sfborg/sfga"
 
 	// tag of the sfga repo to get correct schema version.
-	verSFGA = "v0.3.32"
+	verSFGA = "v0.4.0"
 
 	// jobsNum is the default number of concurrent jobs to run.
 	jobsNum = 5
@@ -43,6 +43,9 @@ type Config struct {
 	// WithNameUsage allows to create CoLDP where name, taxon, synonym
 	// files are combined into name-usage file.
 	WithNameUsage bool
+
+	// NoMetadata skips generation of metadata.yaml file.
+	NoMetadata bool
 }
 
 type Option func(*Config)
@@ -74,6 +77,12 @@ func OptJobsNum(i int) Option {
 func OptBatchSize(i int) Option {
 	return func(c *Config) {
 		c.BatchSize = i
+	}
+}
+
+func OptNoMetadata(b bool) Option {
+	return func(c *Config) {
+		c.NoMetadata = b
 	}
 }
 

@@ -25,8 +25,15 @@ func versionFlag(cmd *cobra.Command) {
 }
 
 func nameUsageFlag(cmd *cobra.Command) {
-	b, _ := cmd.Flags().GetBool("version")
+	b, _ := cmd.Flags().GetBool("name-usage")
 	if b {
 		opts = append(opts, config.OptWithNameUsage(b))
+	}
+}
+
+func noMetadataFlag(cmd *cobra.Command) {
+	b, _ := cmd.Flags().GetBool("no-metadata")
+	if b {
+		opts = append(opts, config.OptNoMetadata(b))
 	}
 }

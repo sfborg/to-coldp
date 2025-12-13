@@ -22,6 +22,7 @@ SELECT
 	col__name_id, col__related_name_id, col__source_id, col__type_id,
 	col__reference_id, col__remarks, col__modified, col__modified_by
 FROM name_relation
+WHERE col__type_id IS NOT NULL AND col__type_id != ''
 `
 	rows, err := c.db.Query(q)
 	if err != nil {
