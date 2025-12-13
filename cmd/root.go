@@ -49,6 +49,7 @@ SQL dump format.
 		versionFlag(cmd)
 		flags := []flagFunc{
 			nameUsageFlag,
+			noMetadataFlag,
 		}
 		for _, v := range flags {
 			v(cmd)
@@ -150,4 +151,5 @@ func prepareFileStructure() error {
 
 func init() {
 	rootCmd.Flags().BoolP("version", "V", false, "shows app's version")
+	rootCmd.Flags().BoolP("no-metadata", "M", false, "skip generation of metadata.yaml file")
 }

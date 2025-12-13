@@ -27,17 +27,22 @@ func New(
 
 func (t *tocoldp) Export(outputPath string) error {
 	base := t.cfg.CacheColdpDir
+	var err error
 
-	slog.Info("Exporting Metadata file")
-	path := filepath.Join(base, "metadata.yaml")
-	err := t.clf.Meta(path)
-	if err != nil {
-		slog.Error("Cannot create Metadata.yaml file")
-		return err
+	if !t.cfg.NoMetadata {
+		slog.Info("Exporting Metadata file")
+		path := filepath.Join(base, "metadata.yaml")
+		err = t.clf.Meta(path)
+		if err != nil {
+			slog.Error("Cannot create Metadata.yaml file")
+			return err
+		}
+	} else {
+		slog.Info("Skipping Metadata file (--no-metadata flag)")
 	}
 
 	slog.Info("Exporting Reference file")
-	path = filepath.Join(base, "Reference.tsv")
+	path := filepath.Join(base, "Reference.tsv")
 	err = t.clf.Reference(path)
 	if err != nil {
 		slog.Error("Cannot create Reference.tsv file", "error", err)

@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Add: `--no-metadata` / `-M` flag to skip metadata.yaml generation.
+Add: Filter out NameRelation records with blank/null col__type_id (TaxonWorks compatibility).
+Fix: nameUsageFlag was reading wrong flag value.
+Update: SFGA version to v0.4.0.
+
 ## [v0.1.3] - 2025-04-23
 Switch to go-yaml
 
